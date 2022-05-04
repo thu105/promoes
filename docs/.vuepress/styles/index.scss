@@ -1,0 +1,15 @@
+@use 'about';
+
+:root {
+  // brand colors
+  --c-brand: #4C3F77;
+  --c-brand-light: #7360b0;
+
+  scroll-behavior: smooth;
+}
+
+html.dark {
+  // brand colors
+  --c-brand: #7360b0;
+  --c-brand-light: #9c84ea;
+}
