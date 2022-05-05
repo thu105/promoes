@@ -10,12 +10,12 @@ Hein Thu is an international student from Burma currently pursuing MSCS program 
 ## Education
 |Year|Degree|College|GPA|
 |---|---|---|---|
-| 2021-2023 | **M.S. in Computer Science**| Westcliff University | 4.000
-| 2015-2018 | **B.S. in Computer Science**, Minor in Economics| Chapman University | 3.889
+| 2021-2023 | **M.S. in Computer Science**| [Westcliff University](https://www.westcliff.edu/academics/college-of-technology-engineering/master-of-science-computer-science-mscs/) | 4.000
+| 2015-2018 | **B.S. in Computer Science**, Minor in Economics| [Chapman University](https://www.chapman.edu/engineering/academic-programs/bs-computer-science.aspx) | 3.889
 
 ---
 ## Experience
-### NOC Engineer at Alvaka Networks	(2018-2021)
+### NOC Engineer at [Alvaka Networks](https://www.alvaka.net/)	(2018-2021)
 - System administration of internal ticketing, patching, and security systems.
 -	Software and automation development for the IT department.
 -	Development and administration of relational databases.
