@@ -1,10 +1,6 @@
 ---
 title: Team
 date: 2022-05-03
-avatar: /img/profile.jpg
-name: Hein Thu
-subname: ဟိန်းမိုးသူ
-cv: /files/about/Hein Thu - Resume [20220503].pdf
 ---
 <AboutProfile/>
 
