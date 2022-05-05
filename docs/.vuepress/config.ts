@@ -72,7 +72,7 @@ export default defineUserConfig<GungnirThemeOptions>({
     // My personal information
     personalInfo: {
       name: 'Hein Moe Thu',
-      avatar: '/img/home/avatar.jpg',
+      avatar: '/img/profile.jpg',
       description: 'Just an aloof blockhead on a keyboard trying to learn.',
       sns: {
         github: 'thu105',  // Github
