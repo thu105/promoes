@@ -73,12 +73,16 @@ export default defineUserConfig<GungnirThemeOptions>({
     personalInfo: {
       name: 'Hein Moe Thu',
       avatar: '/img/profile.jpg',
-      description: 'Just an aloof blockhead on a keyboard trying to learn.',
+      description: 'ဟိန်းမိုးသူ',
       sns: {
         github: 'thu105',  // Github
         linkedin: 'hein-thu',  // Linkedin
         facebook: 'hein.moe.thu.1996',  // Facebook
         email: 'hein.thu@promoes.com',  // Email
+        cv: {  // any name you want
+          icon: "ai-cv",  // platform icon
+          link: "/files/about/Hein Thu - Resume [20220503].pdf"  // profile URL
+        }
       }
     },
 

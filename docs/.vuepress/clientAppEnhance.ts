@@ -1,38 +1,25 @@
 import { defineClientAppEnhance } from "@vuepress/client";
 import { addIcons } from "oh-vue-icons";
 import {
-  FaFortAwesome,
-  FaSatelliteDish,
   FaTag,
-  OiRocket,
   RiLinkM,
   RiGithubFill,
   RiLinkedinBoxFill,
   RiFacebookBoxFill,
   RiTwitterFill,
-  RiZhihuLine,
   HiMail,
-  FaPaw,
-  AiCv,
-  AiGoogleScholarSquare
-} from "oh-vue-icons/icons";
+  AiCv} from "oh-vue-icons/icons";
 import AboutProfile from "./components/AboutProfile.vue"
 
 addIcons(
-  FaFortAwesome,
-  FaSatelliteDish,
   FaTag,
-  OiRocket,
   RiLinkM,
   RiGithubFill,
   RiLinkedinBoxFill,
   RiFacebookBoxFill,
   RiTwitterFill,
-  RiZhihuLine,
   HiMail,
-  FaPaw,
-  AiCv,
-  AiGoogleScholarSquare
+  AiCv
 );
 
 export default defineClientAppEnhance(({ app }) => {

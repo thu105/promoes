@@ -3,27 +3,12 @@
     <template #page>
       <div class="about-profile">
         <div class="about-avatar">
-          <img :src="$withBase(pageData.frontmatter.avatar)" />
+          <img :src="$withBase(personalInfo.avatar)" />
         </div>
         <div class="about-info">
-          <h1 class="name">{{ pageData.frontmatter.name }}</h1>
-          <p class="subname">{{ pageData.frontmatter.subname }}</p>
-          <div class="sns">
-            <div
-              v-for="(link, platform) in LINKS"
-              :key="`sns-${link}`"
-              class="sns-item"
-            >
-              <a target="_blank" :href="link">
-                <v-icon :name="snsIcon(platform)" scale="1.82" />
-              </a>
-            </div>
-            <div v-if="pageData.frontmatter.cv" class="sns-item">
-              <a :href="pageData.frontmatter.cv" download>
-                <v-icon name="ai-cv" scale="2" />
-              </a>
-            </div>
-          </div>
+          <h1 class="name">{{ personalInfo.name }}</h1>
+          <p class="subname">{{ personalInfo.description }}</p>
+          <SNS class="hide-on-mobile sns" large />
         </div>
       </div>
     </template>
@@ -31,8 +16,11 @@
 </template>
 
 <script setup>
-import { pageData } from "@vuepress/client";
-import Common from "vuepress-theme-gungnir/lib/client/components/Common.vue";
+import { useThemeLocaleData } from "@vuepress/plugin-theme-data/lib/client"
+import SNS from "vuepress-theme-gungnir/lib/client/components/SNS.vue"
+import Common from "vuepress-theme-gungnir/lib/client/components/Common.vue"
+
+const themeLocale = useThemeLocaleData();
 
 const LINKS = {
   github: "https://github.com/thu105",
@@ -49,4 +37,5 @@ const ICONS = {
 };
 
 const snsIcon = (platform) => ICONS[platform];
+const personalInfo = themeLocale.value.personalInfo;
 </script>
