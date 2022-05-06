@@ -16,10 +16,9 @@
 </template>
 
 <script setup>
-import { pageData } from "@vuepress/client";
-import { useThemeLocaleData } from "vuepress-theme-gungnir/lib/client/composables";
+import { useThemeLocaleData } from "@vuepress/plugin-theme-data/lib/client"
 import SNS from "vuepress-theme-gungnir/lib/client/components/SNS.vue"
-import Common from "vuepress-theme-gungnir/lib/client/components/Common.vue";
+import Common from "vuepress-theme-gungnir/lib/client/components/Common.vue"
 
 const themeLocale = useThemeLocaleData();
 
