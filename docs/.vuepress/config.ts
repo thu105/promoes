@@ -148,7 +148,7 @@ export default defineUserConfig<GungnirThemeOptions>({
       mdPlus: {
         all: true
       },
-      ga: false,
+      ga: 'G-YBZY4BLVM6',
       pwa: true,
     },
 
