@@ -6,7 +6,6 @@ const isProd = process.env.NODE_ENV === "production";
 
 export default defineUserConfig<GungnirThemeOptions>({
   base: '/',
-
   head: [
     [
       'link',
@@ -68,7 +67,7 @@ export default defineUserConfig<GungnirThemeOptions>({
 
   themeConfig: {
     docsDir: 'docs',
-    
+    repo: 'thu105/promoes',
     // My personal information
     personalInfo: {
       name: 'Hein Moe Thu',
