@@ -1,6 +1,6 @@
 ---
 layout: Post
-title: Learning Vue
+title: Learning VueJS
 subtitle: Teaching myself how to create a website using VueJS framework.
 date: 2022-04-25
 author: Hein Thu
@@ -9,7 +9,7 @@ headerImage: /img/posts/learning-vue-header.jpg
 headerImageCredit: Patrick Fore on Unsplash
 headerMask: rgba(0, 0, 0, .5)
 tags:
- - Vue
+ - VueJS
  - VuePress
  - Gungnir
  - VitePress
@@ -141,4 +141,5 @@ I integrated the site with Firebase and generated two GitHub Action workflows. I
 I got [Promoes](https://promoes.com) created and running in a little over a week. While the code is quite sloppy, I am just happy that I had a functioning website in the end. It was a good learning experience as I learned about Vue, Vite, VuePress, Gungnir, and TypeScript with just one project. It does look like I just copied and pasted codes since most of my time was spent testing and understanding how the stack works. If I were to do a project like this again, I would spend more time researching to know which plugins, frameworks, and packages to use from the beginning.
  
 ## Related Posts
-- [About Promoes](/about/promoes.md)
+- [About Promoes](/about/promoes/)
+- [Promoes](/post/2022/05/01/promoes/)
