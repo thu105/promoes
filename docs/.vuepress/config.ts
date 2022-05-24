@@ -123,14 +123,6 @@ export default defineUserConfig<GungnirThemeOptions>({
         "path": "https://lh3.googleusercontent.com/wCBUesvWoMYUxVywp-Z-RDQPeTgQb7RyxFtH9hl2nfIT_yBlplCoXVtfsNyvT-bS1yOZ1eTWpIfFRQNz6zN6oczWaDW38OLnAmtYrM06UThHYaxS4ihG6QWtMCaya5Rv8H88orDoOR4=w2400",
         "mask": "rgba(0, 0, 0, .5)"
       },
-      {
-        "path": "https://lh3.googleusercontent.com/FHdm4uewf0N5cx3k_swP9Ue6TKgicB-MWJVz96Q0dlqWtPJixzzneqjGQk22YEIQXoN5cj9p5U_wnDmWmXDRa4VAWyNQEBKCVcMxBVj946JXGbkzD1o1KHfpxOWvdYmF-w680m8TMiU=w2400",
-        "mask": "rgba(0, 0, 0, .5)"
-      },
-      {
-        "path": "https://lh3.googleusercontent.com/CWt8Y4dW_QSLLzFECk3l83mrSbpGDRM7xKZVFqgLurLYYXBtHG5wS5pZCivRJwCuGQroIcC1gv80X0RJ1NNXbnQ1wb7X1WRJzzs4isNG8LKdL8RV7DZu8ZYRESlPl8xA2YwPfx8G3xM=w2400",
-        "mask": "rgba(0, 0, 0, .5)"
-      },
     ],
 
     pages: {
