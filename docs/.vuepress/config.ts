@@ -80,7 +80,7 @@ export default defineUserConfig<GungnirThemeOptions>({
         email: 'hein.thu@promoes.com',  // Email
         cv: {  // any name you want
           icon: "ai-cv",  // platform icon
-          link: "/files/about/Hein Thu - Resume [20220503].pdf"  // profile URL
+          link: "/files/about/Hein Thu - Resume [20220713].pdf"  // profile URL
         }
       }
     },
