@@ -5,7 +5,7 @@ subtitle: Exploring ways to acquire and use knowledge in an organization.
 date: 2022-02-03
 author: Hein Thu
 useHeaderImage: true
-headerImage: https://lh3.googleusercontent.com/FHdm4uewf0N5cx3k_swP9Ue6TKgicB-MWJVz96Q0dlqWtPJixzzneqjGQk22YEIQXoN5cj9p5U_wnDmWmXDRa4VAWyNQEBKCVcMxBVj946JXGbkzD1o1KHfpxOWvdYmF-w680m8TMiU=w2400
+headerImage: /img/posts/default.jpg
 headerImageCredit: Hein Moe Thu
 headerMask: rgba(0, 0, 0, .5)
 tags:

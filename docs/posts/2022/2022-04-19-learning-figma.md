@@ -5,7 +5,7 @@ subtitle: Learning about wireframing and prototyping with Figma.
 date: 2022-04-19
 author: Hein Thu
 useHeaderImage: true
-headerImage: https://lh3.googleusercontent.com/CWt8Y4dW_QSLLzFECk3l83mrSbpGDRM7xKZVFqgLurLYYXBtHG5wS5pZCivRJwCuGQroIcC1gv80X0RJ1NNXbnQ1wb7X1WRJzzs4isNG8LKdL8RV7DZu8ZYRESlPl8xA2YwPfx8G3xM=w2400
+headerImage: /img/posts/default.jpg
 headerImageCredit: Hein Moe Thu
 headerMask: rgba(0, 0, 0, .5)
 tags:
