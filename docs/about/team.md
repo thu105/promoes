@@ -45,12 +45,12 @@ A multi-threaded android app that scrapes details of top 25 cryptocurrencies and
 
 A multi-threaded, console-based game that allows multiple clients to play and communicate to the server using TCP/IP web sockets.
 
-### proMoes.com
+### Promoes.com (Deprecated)
 (JS, HTML)
 
-A simple personal website showcasing my resume in a web format, hosted on GitHub Page, and routed through Cloudflare for custom domain and SSL cert.
+A simple personal website showcasing my resume in a web format, hosted on GitHub Page, and routed through Cloudflare for custom domain and SSL cert. It has been replaced by this website. If you want to see the original version, it is available [here](https://www1.chapman.edu/~thu105/).
 
-### Firewall Management
+### [Firewall Management](/post/2022/08/18/affordable-firewall-for-smbs/)
 (OPNSense)
 
 A firewall built for a small business with features including DNS filtering, load-balancing, OpenVPN service with LDAP authentication, geo-blocking, and Dynamic DNS.
