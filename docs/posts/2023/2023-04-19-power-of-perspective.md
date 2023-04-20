@@ -5,7 +5,8 @@ subtitle: The Importance of Self-Reflection in Personal Growth and Development
 date: 2023-04-19
 author: Hein Thu
 useHeaderImage: true
-headerImage: /img/posts/default.jpg
+headerImage: /img/posts/power-of-perspective-header.jpg
+headerImageCredit: Bing Image Creator
 headerMask: rgba(0, 0, 0, .5)
 tags:
  - ShowerThought
