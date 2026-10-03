@@ -1,4 +1,5 @@
-import { defineClientAppEnhance } from "@vuepress/client";
+import "./styles/index.scss";
+import { defineClientConfig } from "@vuepress/client";
 import { addIcons } from "oh-vue-icons";
 import {
   FaTag,
@@ -22,6 +23,6 @@ addIcons(
   AiCv
 );
 
-export default defineClientAppEnhance(({ app }) => {
+export default defineClientConfig({ enhance({ app }) {
   app.component("AboutProfile", AboutProfile)
-});
+} });

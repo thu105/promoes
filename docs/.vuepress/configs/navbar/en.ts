@@ -1,4 +1,4 @@
-import type { NavbarConfig } from "vuepress-theme-gungnir";
+import type { NavbarConfig } from "../../../../vendor/gungnir/src/shared";
 
 export const en: NavbarConfig = [
   {
@@ -11,6 +11,6 @@ export const en: NavbarConfig = [
   },
   {
     text: 'About',
-    link: '/about/promoes.md',
+    link: '/about/promoes.html',
   }
 ];

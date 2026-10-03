@@ -2,52 +2,61 @@
 
 This repository builds a static VuePress blog. It contains no application server,
 login flow, or database. Markdown, Vue components, and configuration are trusted
-source code; pull requests must be reviewed before merge. No credential patterns
-were found in the current tracked source during this review. This does not cover
-Git history or credentials stored outside the repository.
+source code; review pull requests before merge. The original source review did
+not find credential patterns in tracked files. It did not cover Git history or
+credentials stored outside the repository.
 
-## Patches
+## Dependencies and local compatibility
 
-- Refreshed the Yarn lockfile and enforced patched versions of Vite, its Vue
-  plugin, Esbuild, Markdown-it, TOML, KaTeX, Mermaid, DOMPurify, and
-  Serialize JavaScript. Other vulnerable transitive dependencies now resolve to
-  patched versions within their existing ranges. The Gungnir theme is pinned to
-  preserve the site's existing appearance and API.
-- Replaced the direct Rimraf dependency with Node's built-in recursive removal.
-- Added deterministic compatibility patches for VuePress's legacy Markdown-it
-  import, CommonJS SSR output, and theme navigation injection context. The install/build scripts fail if the patched
-  dependency internals change, requiring an explicit review. Node 22.12 or later
-  is required; CI uses Node 24.
-- Added matching Firebase and Vercel response headers: a Content Security Policy,
-  MIME sniffing protection, frame denial, referrer policy, restricted browser
-  permissions, and HTTPS enforcement. Only the theme's known inline color-scheme
-  script is allowed by hash. Script evaluation and arbitrary inline scripts are
-  blocked. Google Analytics is the only allowed external script origin. Inline
-  styles remain permitted because the theme and Vue components use them.
-- Bound the development server to loopback and added `noopener noreferrer` to
-  manually authored footer links.
-- Pinned every workflow action to a verified commit, disabled checkout credential
-  persistence, limited token permissions, and separated build and deployment
-  runners. Firebase service credentials are only exposed to the deployment job,
-  which downloads only static files and writes a fixed hosting configuration. It
-  does not execute build scripts or accept deployment hooks from build artifacts.
-  Fork PRs retain the existing exclusion from credentialed Firebase previews.
-- Added weekly dependency/action update configuration and ignored local
-  environment files and Vercel credentials/metadata.
+VuePress core, client and Vite bundler are pinned to 2.0.0-rc.31, with Vue 3.5.43,
+Node >=22.18.0 and Yarn 1.22.22. CI uses Node 24. Gungnir alpha.26 is maintained
+in `vendor/` against the supported RC APIs, without installing its obsolete beta
+runtime. See [vendor/README.md](vendor/README.md) for source provenance, licenses
+and maintenance ownership.
 
-## Advisory requiring a local mitigation
+The previous beta dependency graph reported eight paths to the unresolved
+[braces stack-exhaustion advisory](https://github.com/advisories/GHSA-vfj7-8cjw-p6xm),
+mitigated locally with bounded parser/walker depth. The RC graph removes `braces`
+entirely, replacing that mitigation with dependency removal. A regression test
+checks that the vulnerable package and beta VuePress runtime are not reintroduced.
+The retired Markdown-it private-import and CommonJS SSR patches are unnecessary
+under the supported ESM renderer. Navigation injection fixes now live in the
+maintained theme source rather than modifying installed dependencies.
 
-[GHSA-vfj7-8cjw-p6xm](https://github.com/advisories/GHSA-vfj7-8cjw-p6xm)
-reports stack exhaustion in `braces` through 3.0.3, with no upstream patched
-release as of this review. `scripts/patch-dependencies.cjs` adds a maximum depth
-of 128 to its parser and recursive compile, expand, and stringify walkers.
-Regression tests exercise deeply nested patterns below the character limit,
-supplied ASTs, and ordinary brace patterns.
+All previous dependency overrides were reviewed and removed in favor of the
+current packages' supported versions. One override remains: `lodash-es@4.18.1`
+replaces Mermaid/Chevrotain's pinned vulnerable version and fixes
+[template import code injection](https://github.com/advisories/GHSA-r5fr-rjxr-66jc)
+and [array-path prototype pollution](https://github.com/advisories/GHSA-f23m-r3pf-42rh).
+The RC lockfile audit reports zero vulnerabilities, compared with eight high
+findings on the previously mitigated baseline. Re-audit on dependency updates;
+this result is specific to the reviewed lockfile and advisory database.
 
-Yarn audit still reports the installed `braces` version along eight dependency
-paths, even with this local mitigation applied. These are build/development
-packages; the static preview does not expose a Node.js parser endpoint. Remove
-the local patch and update to an upstream fixed release when one is available.
+Charts accept plain JSON. The legacy function deserializer has been removed,
+so charts render without dynamic code evaluation. KaTeX is configured with
+`trust: false`; Markdown link validation and untrusted KaTeX regression tests
+remain enabled. Cleanup uses Node's built-in recursive removal.
+
+## Hosting and CI controls
+
+Firebase and Vercel use matching response headers: a Content Security Policy,
+MIME sniffing protection, frame denial, referrer policy, restricted browser
+permissions and HTTPS enforcement. Only the theme's existing inline color-mode
+script is allowed by hash. Arbitrary inline scripts and dynamic evaluation are
+blocked. Google Analytics is the only allowed external script origin. Inline
+styles remain permitted for the theme and Vue components.
+
+The development server binds to loopback. Footer and profile links preserve
+`noopener noreferrer` when opening a new tab.
+
+Workflow actions are pinned to reviewed commits. Checkout credential persistence
+is disabled and token permissions are limited. Builds and deployments run on
+separate runners. Firebase credentials are exposed only to the deployment job,
+which downloads static output and writes fixed hosting configuration; it does
+not execute build scripts or accept artifact-provided deployment hooks. Fork PRs
+retain the exclusion from credentialed Firebase previews. Weekly dependency and
+Action updates are enabled; local environment files and Vercel credentials are
+ignored.
 
 ## Verification
 
@@ -58,16 +67,13 @@ yarn docs:build
 yarn audit
 ```
 
-The build automatically verifies security-header parity, the CSP hashes of every
-inline script, the absence of published source maps, homepage content, and the
-PWA precache. Security tests also check that Markdown-it rejects executable link
-schemes and KaTeX rejects untrusted HTML/JavaScript commands. Browser verification
-must cover navigation, theme switching, and search under the enforced CSP.
+The build checks hosting-policy parity, hashes for every inline script, rendered
+page content, absence of published source maps and PWA precaching. Browser checks
+must cover all existing post URLs, direct and client navigation, About/profile
+links, search, mobile/desktop layouts and both theme modes under the enforced CSP.
+Build with `DOCS_VERIFY_FEATURES=1` to test representative math, Mermaid, JSON
+charts and Markdown/code features; rebuild without it before deployment.
 
-The chart plugin supports JavaScript callbacks via evaluation; the CSP blocks
-those callbacks. Current posts contain no chart blocks. Keep chart data as JSON
-if adding charts, or replace that legacy plugin before using callbacks.
-
-Firebase remains the production hosting configuration. `vercel.json` supports
-preview builds of the same static output and policy. Use a preview deployment
-without the `--prod` flag; production promotion is a separate action.
+Firebase hosts production. Vercel preview configuration serves the same static
+output and security policy. Local static previews must also serve these headers
+so browser verification exercises the real CSP.

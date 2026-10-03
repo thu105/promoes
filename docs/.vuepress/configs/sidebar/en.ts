@@ -1,12 +1,12 @@
-import { assignDefaultLocaleOptions, SidebarConfig } from "vuepress-theme-gungnir";
+import type { SidebarConfig } from "../../../../vendor/gungnir/src/shared";
 
 export const en: SidebarConfig = {
   '/about/': [
     {
       text: 'About',
       children: [
-        '/about/promoes.md',
-        '/about/team.md'
+        '/about/promoes.html',
+        '/about/team.html'
       ]
     }
   ]

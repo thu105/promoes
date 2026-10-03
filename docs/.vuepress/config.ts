@@ -1,26 +1,17 @@
 import { defineUserConfig } from "vuepress";
-import type { GungnirThemeOptions } from "vuepress-theme-gungnir";
+import { createPage } from "vuepress/core";
+import { anchorPlugin } from "vuepress/markdown";
+import { readFileSync } from "node:fs";
+import { viteBundler } from "@vuepress/bundler-vite";
+import { gungnirTheme } from "../../vendor/gungnir/src/node/gungnirTheme";
 import { navbar, sidebar } from "./configs";
 
 const isProd = process.env.NODE_ENV === "production";
 
-export default defineUserConfig<GungnirThemeOptions>({
+export default defineUserConfig({
   base: '/',
   host: '127.0.0.1',
-  bundlerConfig: {
-    viteOptions: {
-      ssr: { noExternal: ['chart.js'] },
-      plugins: [{
-        name: 'vuepress-legacy-ssr-format',
-        config(config: { build?: { ssr?: boolean | string } }) {
-          // This VuePress release loads its SSR entry with require().
-          if (config.build?.ssr) {
-            return { build: { rollupOptions: { output: { format: 'cjs' } } } };
-          }
-        }
-      }]
-    }
-  },
+  shouldPrefetch: false,
   head: [
     [
       'link',
@@ -72,15 +63,9 @@ export default defineUserConfig<GungnirThemeOptions>({
     },
   },
 
-  bundler:
-    // specify bundler via environment variable
-    process.env.DOCS_BUNDLER ??
-    // use vite by default
-    "@vuepress/vite",
+  bundler: viteBundler({ viteOptions: { ssr: { noExternal: ['oh-vue-icons', 'chart.js'] }, optimizeDeps: { exclude: ['oh-vue-icons/icons'] } } }),
 
-  theme: 'vuepress-theme-gungnir',
-
-  themeConfig: {
+  theme: gungnirTheme({
     docsDir: 'docs',
     repo: 'thu105/promoes',
     // My personal information
@@ -165,13 +150,31 @@ export default defineUserConfig<GungnirThemeOptions>({
       Powered by <a href="https://v2.vuepress.vuejs.org" target="_blank" rel="noopener noreferrer">VuePress</a> &
       <a href="https://github.com/Renovamen/vuepress-theme-gungnir" target="_blank" rel="noopener noreferrer">Gungnir</a>
     `
-  },
+  }),
 
   plugins: [
-  ],
+    process.env.DOCS_VERIFY_FEATURES === '1' ? {
+      name: 'promoes-local-feature-fixture',
+      onInitialized: async app => {
+        app.pages.push(await createPage(app, {
+          path: '/verification/features/',
+          frontmatter: { title: 'Feature verification', hide: true },
+          content: readFileSync(new URL('../../scripts/fixtures-features.md', import.meta.url), 'utf8')
+        }));
+      }
+    } : false
+  ].filter(Boolean),
 
   markdown: {
-    extractHeaders: {
+    // A separate permalink avoids nesting links in headings such as About > Projects.
+    anchor: {
+      permalink: anchorPlugin.permalink.linkInsideHeader({
+        symbol: '#',
+        placement: 'before',
+        ariaHidden: true
+      })
+    },
+    headers: {
       level: [2,3,4,5]
     }
   }
