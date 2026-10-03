@@ -6,6 +6,13 @@ import { join } from 'node:path';
 const firebaseHeaders = JSON.parse(readFileSync('firebase.json')).hosting.headers[0].headers;
 const vercelHeaders = JSON.parse(readFileSync('vercel.json')).headers[0].headers;
 assert.deepEqual(firebaseHeaders, vercelHeaders, 'Hosting security policies must match');
+// Credentialed CI uses fixed configuration; it must enforce the same policy.
+for (const workflow of ['firebase-hosting-merge.yml', 'firebase-hosting-pull-request.yml']) {
+  const text = readFileSync(`.github/workflows/${workflow}`, 'utf8');
+  const json = text.match(/cat > firebase\.json <<'JSON'\n([\s\S]*?)\n\s+JSON/);
+  assert(json, `Fixed hosting configuration is missing from ${workflow}`);
+  assert.deepEqual(JSON.parse(json[1]).hosting.headers[0].headers, firebaseHeaders, `CI security policy differs in ${workflow}`);
+}
 const policy = firebaseHeaders.find(({ key }) => key === 'Content-Security-Policy').value;
 const scriptPolicy = policy.split(';').find((part) => part.trim().startsWith('script-src '));
 assert(!scriptPolicy.includes("'unsafe-inline'"), 'Inline scripts must use hashes');
@@ -20,6 +27,7 @@ function checkDirectory(directory) {
     } else if (entry.name.endsWith('.html')) {
       const html = readFileSync(path, 'utf8');
       pages++;
+      assert(/<div id="app">[\s\S]*?(?:<main|<div class="theme-container|class="theme-gungnir)/.test(html), `Rendered page content is missing: ${path}`);
       for (const [, attributes, script] of html.matchAll(/<script\b([^>]*)>([\s\S]*?)<\/script>/gi)) {
         if (/\bsrc\s*=/.test(attributes)) continue;
         const hash = createHash('sha256').update(script).digest('base64');

@@ -1,32 +1,16 @@
 const assert = require('node:assert/strict');
 const { test } = require('node:test');
-const braces = require('braces');
+const { readFileSync } = require('node:fs');
 const MarkdownIt = require('markdown-it');
 const katex = require('katex');
 
-test('deep brace patterns fail with a bounded error before recursive traversal', () => {
-  const malicious = '{'.repeat(4000) + 'a,b' + '}'.repeat(4000);
-  for (const method of ['parse', 'compile', 'expand', 'stringify']) {
-    assert.throws(() => braces[method](malicious), /Brace nesting exceeds security limit/);
+test('the retired vulnerable braces and beta VuePress runtime stay out of the dependency graph', () => {
+  const lock = readFileSync('yarn.lock', 'utf8');
+  assert(!/^braces@/m.test(lock), 'The removed braces advisory must not be reintroduced');
+  for (const name of ['vuepress', '@vuepress/core', '@vuepress/client', '@vuepress/bundler-vite']) {
+    assert.equal(require(`${name}/package.json`).version, '2.0.0-rc.31');
   }
-  const parentheses = '('.repeat(4000) + 'x' + ')'.repeat(4000);
-  assert.throws(() => braces.compile(parentheses), /Brace nesting exceeds security limit/);
-});
-
-test('recursive brace walkers reject a deeply nested supplied AST', () => {
-  let ast = { type: 'text', value: 'x', nodes: [] };
-  for (let i = 0; i < 5000; i++) ast = { type: 'root', nodes: [ast] };
-  for (const method of ['compile', 'expand', 'stringify']) {
-    assert.throws(() => braces[method](ast), /Brace nesting exceeds security limit/);
-  }
-});
-
-test('ordinary and escaped brace patterns still work', () => {
-  assert.deepEqual(braces.expand('assets/*.{js,css}'), ['assets/*.js', 'assets/*.css']);
-  assert.deepEqual(braces.expand('{1..3}'), ['1', '2', '3']);
-  assert.equal(braces.stringify('a/{b,{c,d}}/e'), 'a/{b,{c,d}}/e');
-  assert.equal(braces.compile('a/{b,c}/d'), 'a/(b|c)/d');
-  assert.equal(braces.stringify(String.raw`a/\{b,c\}/d`), 'a/{b,c}/d');
+  assert(!/^"?@vuepress\/[^\n]*beta\./m.test(lock), 'Legacy VuePress beta packages remain');
 });
 
 test('Markdown rejects executable link schemes', () => {

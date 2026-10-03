@@ -13,3 +13,11 @@ html.dark {
   --c-brand: #7360b0;
   --c-brand-light: #9c84ea;
 }
+// The RC Mermaid plugin's default margins target the default theme's padding.
+.theme-gungnir-content .mermaid-wrapper {
+  max-width: 100%;
+  margin: 1rem 0;
+}
+.theme-gungnir-content .mermaid-content {
+  overflow-x: auto;
+}
