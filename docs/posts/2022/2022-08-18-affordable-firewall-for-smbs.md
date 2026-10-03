@@ -5,7 +5,9 @@ subtitle: Designing and implementing an enterprise-grade firewall on an old comp
 date: 2022-08-18
 author: Hein Thu
 useHeaderImage: true
-headerImage: /img/posts/default.jpg
+headerImage: /img/posts/network-cabling.jpg
+headerImageCredit: Albert Stoynov on Unsplash
+headerImageCreditLink: https://unsplash.com/photos/a-close-up-of-a-network-with-wires-connected-to-it-dyUp7WPu5q4
 headerMask: rgba(0, 0, 0, .5)
 tags:
  - Project

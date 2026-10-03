@@ -5,8 +5,9 @@ subtitle: Exploring ways to acquire and use knowledge in an organization.
 date: 2022-02-03
 author: Hein Thu
 useHeaderImage: true
-headerImage: /img/posts/default.jpg
-headerImageCredit: Hein Moe Thu
+headerImage: /img/posts/team-learning.jpg
+headerImageCredit: Van Tay Media on Unsplash
+headerImageCreditLink: https://unsplash.com/photos/meeting-of-people-TOBRTuE_uXA
 headerMask: rgba(0, 0, 0, .5)
 tags:
  - KnowledgeManagement
