@@ -6,3 +6,17 @@
 
 This is my personal blog using [VuePress](https://v2.vuepress.vuejs.org/) with [Gungnir](https://v2-vuepress-theme-gungnir.vercel.app/) theme. Check it out live at https://promoes.com/.
 The website is for me to document my projects, courses, and thoughts while aslo serving as a playground for me to learn more about the Vue framework.
+## Development and security
+
+Use Node 22.12 or later and Yarn 1.22.22:
+
+```sh
+yarn install --frozen-lockfile
+yarn docs:dev
+yarn test:security
+yarn docs:build
+```
+
+See [SECURITY.md](SECURITY.md) for dependency patches, the locally mitigated
+`braces` advisory, hosting policies, and verification commands. Firebase hosts
+production; `vercel.json` also supports Vercel preview deployments.

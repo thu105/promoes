@@ -6,6 +6,21 @@ const isProd = process.env.NODE_ENV === "production";
 
 export default defineUserConfig<GungnirThemeOptions>({
   base: '/',
+  host: '127.0.0.1',
+  bundlerConfig: {
+    viteOptions: {
+      ssr: { noExternal: ['chart.js'] },
+      plugins: [{
+        name: 'vuepress-legacy-ssr-format',
+        config(config: { build?: { ssr?: boolean | string } }) {
+          // This VuePress release loads its SSR entry with require().
+          if (config.build?.ssr) {
+            return { build: { rollupOptions: { output: { format: 'cjs' } } } };
+          }
+        }
+      }]
+    }
+  },
   head: [
     [
       'link',
@@ -145,10 +160,10 @@ export default defineUserConfig<GungnirThemeOptions>({
     },
 
     footer: `
-      Developed by <a href="https://github.com/thu105" target="_blank">Hein Thu</a>
+      Developed by <a href="https://github.com/thu105" target="_blank" rel="noopener noreferrer">Hein Thu</a>
       <br>
-      Powered by <a href="https://v2.vuepress.vuejs.org" target="_blank">VuePress</a> &
-      <a href="https://github.com/Renovamen/vuepress-theme-gungnir" target="_blank">Gungnir</a>
+      Powered by <a href="https://v2.vuepress.vuejs.org" target="_blank" rel="noopener noreferrer">VuePress</a> &
+      <a href="https://github.com/Renovamen/vuepress-theme-gungnir" target="_blank" rel="noopener noreferrer">Gungnir</a>
     `
   },
 
