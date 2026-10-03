@@ -6,13 +6,30 @@
   "author": "Hein Thu <thu105@mail.chapman.edu>",
   "license": "MIT",
   "devDependencies": {
-    "rimraf": "^3.0.2",
     "vuepress": "2.0.0-beta.39",
-    "vuepress-theme-gungnir": "^2.0.0-alpha.22"
+    "vuepress-theme-gungnir": "2.0.0-alpha.22"
   },
   "scripts": {
-    "docs:clean": "rimraf docs/.vuepress/.temp docs/.vuepress/.cache dist",
-    "docs:dev": "vuepress dev docs",
-    "docs:build": "yarn docs:clean && vuepress build docs --clean-cache --dest dist"
+    "docs:clean": "node scripts/clean.mjs",
+    "docs:dev": "node scripts/patch-dependencies.cjs && vuepress dev docs",
+    "docs:build": "node scripts/patch-dependencies.cjs && npm run docs:clean && vuepress build docs --clean-cache --dest dist && node scripts/check-built-site.mjs",
+    "postinstall": "node scripts/patch-dependencies.cjs",
+    "security:check": "node scripts/check-built-site.mjs",
+    "test:security": "node --test scripts/security.test.cjs"
+  },
+  "packageManager": "yarn@1.22.22",
+  "engines": {
+    "node": ">=22.12.0"
+  },
+  "resolutions": {
+    "vite": "6.4.3",
+    "@vitejs/plugin-vue": "5.2.4",
+    "katex": "^0.16.22",
+    "toml": "4.2.0",
+    "markdown-it": "14.3.1",
+    "mermaid": "10.9.8",
+    "dompurify": "^3.4.16",
+    "serialize-javascript": "^7.0.3",
+    "esbuild": "^0.25.0"
   }
 }
