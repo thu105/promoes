@@ -202,6 +202,10 @@ AI expands the range of human capabilities that capital can economically substit
 
 The long-term distributional outcome depends on whether complementary human productivity, new tasks, and demand expansion offset substitution. If they do not, productivity growth can become increasingly disconnected from labor compensation.
 
+## Related Posts
+
+- [What Is Your Moat?](./2026-10-15-what-is-your-moat.md) — How cheaper access to AI changes software replication costs, competitive advantage, and the assets businesses need to defend their returns.
+
 ## References and Further Reading
 
 1. Acemoglu, D., & Restrepo, P. (2019). [Automation and New Tasks: How Technology Displaces and Reinstates Labor.](https://www.nber.org/papers/w25684) *Journal of Economic Perspectives, 33*(2), 3–30. [Published article](https://doi.org/10.1257/jep.33.2.3).

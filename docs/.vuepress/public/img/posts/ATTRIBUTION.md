@@ -11,3 +11,4 @@ The local files are landscape crops resized to 1600 × 900 pixels and optimized 
 | `website-code.jpg` | Mohammad Rahmani | [Source photo](https://unsplash.com/photos/laptop-screen-displaying-colorful-code-8qEB0fTe9Vw) | [Unsplash License](https://unsplash.com/license) | 2026-10-02 |
 | `network-cabling.jpg` | Albert Stoynov | [Source photo](https://unsplash.com/photos/a-close-up-of-a-network-with-wires-connected-to-it-dyUp7WPu5q4) | [Unsplash License](https://unsplash.com/license) | 2026-10-02 |
 | `who-owns-the-intelligence.jpg` | Franck V. (@possessedphotography) | [Source photo: Take My Hand](https://unsplash.com/photos/white-robot-rDxP1tF3CmA) | [Unsplash License](https://unsplash.com/license) | 2026-10-14 |
+| `what-is-your-moat.jpg` | Katelyn G (@katelyn_g) | [Source photo: Bodiam Castle and its moat](https://unsplash.com/photos/a-castle-sitting-on-top-of-a-lake-next-to-a-forest-4OtgPAqqPUo) | [Unsplash License](https://unsplash.com/license) | 2026-10-15 |
