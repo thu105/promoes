@@ -8,7 +8,7 @@
   "devDependencies": {
     "vuepress": "2.0.0-rc.31",
     "@vuepress/bundler-vite": "2.0.0-rc.31",
-    "vue": "3.5.43",
+    "vue": "3.5.44",
     "@vueuse/core": "15.0.0",
     "oh-vue-icons": "1.0.0-rc3",
     "sass": "1.105.1",
