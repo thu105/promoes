@@ -17,7 +17,7 @@
     "markdown-it-sub": "2.0.0",
     "markdown-it-sup": "2.0.0",
     "markdown-it-container": "4.0.0",
-    "chart.js": "4.5.1",
+    "chart.js": "4.6.1",
     "katex": "0.19.0",
     "mermaid": "12.1.0",
     "@vuepress/plugin-theme-data": "2.0.0-rc.135",
